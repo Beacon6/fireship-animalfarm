@@ -4,11 +4,18 @@ import './App.css';
 function App() {
   const [animals, setAnimals] = useState([]);
 
+  useEffect(() => {
+    const lastQuery = localStorage.getItem('lastQuery');
+    searchAnimals(lastQuery);
+  }, []);
+
   const searchAnimals = async (q) => {
     const response = await fetch('http://localhost:8080/animalfarm?' + new URLSearchParams({ q }));
     const data = await response.json();
     setAnimals(data);
-  }
+
+    localStorage.setItem('lastQuery', q);
+  };
 
   return (
     <main>
