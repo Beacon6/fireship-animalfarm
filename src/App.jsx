@@ -22,9 +22,7 @@ function App() {
 
       <ul>
         {animals.map((animal) => (
-          <li id={animal.idx}>
-            <strong>{animal.type}</strong> {animal.name} ({animal.age} years old)
-          </li>
+          <Animal key={animal.idx} type={animal.type} name={animal.name} age={animal.age} />
         ))}
 
         {animals.length === 0 && 'No animals found'}
@@ -34,3 +32,11 @@ function App() {
 }
 
 export default App;
+
+function Animal({ type, name, age }) {
+  return (
+    <li>
+      <strong>{type}</strong> {name} ({age} years old)
+    </li>
+  );
+}
